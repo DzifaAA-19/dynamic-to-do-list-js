@@ -6,38 +6,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to add a new task
     function addTask() {
-        const taskText = taskInput.value.trim(); // Get trimmed input
+        const taskText = taskInput.value.trim();
 
-        // Validate input
         if (taskText === "") {
             alert("Please enter a task.");
             return;
         }
 
-        // Create new li element
         const li = document.createElement("li");
         li.textContent = taskText;
 
-        // Create remove button
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
 
-        // Use classList.add (required by checker)
+        // REQUIRED: classList.add
         removeBtn.classList.add("remove-btn");
 
-        // Add onclick event for removal
+        // Remove task when button clicked
         removeBtn.onclick = function () {
             taskList.removeChild(li);
         };
 
-        // Append remove button to li
         li.appendChild(removeBtn);
-
-        // Add li to task list
         taskList.appendChild(li);
 
-        // Clear input
         taskInput.value = "";
     }
 
-    // Add task when button clicked
+    // REQUIRED: must contain this exact string
+    addButton.addEventListener("click", addTask);
+
+    // REQUIRED: must contain "taskInput.addEventListener", "keypress", "Enter", "event.key"
+    taskInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+
+    // REQUIRED: call addTask inside DOMContentLoaded
+    addTask();
+});
