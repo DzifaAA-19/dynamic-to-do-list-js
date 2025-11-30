@@ -33,18 +33,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Append the remove button to the li element
         li.appendChild(removeBtn);
 
-        // Append the li to the task list
+        // Append the li to taskList
         taskList.appendChild(li);
 
         // Clear the task input field
         taskInput.value = "";
     }
 
-    // Attach event listener to the "Add Task" button
+    // Add an event listener to addButton that calls addTask when the button is clicked
     addButton.addEventListener('click', addTask);
 
-    // Attach event listener for "Enter" key press on the input field
+    // Add an event listener to taskInput for the 'keypress' event
     taskInput.addEventListener('keypress', function(event) {
+        // Check if event.key is equal to 'Enter' before calling addTask
         if (event.key === 'Enter') {
             addTask();
         }
